@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "pomodoro"
+version = "0.1.0"
+description = "Console-based Pomodoro Timer with system beep notifications and support for command-line arguments."
+authors = ["Vladislav Andronov <68904879+AndrVLDZ@users.noreply.github.com>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12.8"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+pomodoro = "pomodoro.main:main"
