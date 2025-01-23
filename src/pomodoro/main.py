@@ -46,11 +46,11 @@ class Pomodoro():
                         self._rest()
                 print("Pomodoro session complete!\n")
                 print("\a")
-                next_session = get_yes_no("\nDo you want to start another session (Y/N)", default=False)
+                next_session = get_yes_no("\nDo you want to start another session?", default=False)
                 if not next_session:
                     break
             except KeyboardInterrupt:
-                confirm_exit = get_yes_no("\nDo you want to stop the session (Y/N)", default=False)
+                confirm_exit = get_yes_no("\nDo you want to stop the session?", default=False)
                 if confirm_exit:
                     print("Session stopped manually!\n")
                     print("\a")
@@ -76,7 +76,7 @@ def start_pomodoro_from_user_input() -> None:
     cycles = get_positive_int("1. Enter the number of cycles: ")
     work_minutes = get_positive_int("2. Enter the work time in minutes: ")
     rest_minutes = get_positive_int("3. Enter the rest time in minutes: ")
-    test_mode = get_yes_no("4. Test Mode (Y/N)", default=False)
+    test_mode = get_yes_no("4. Test Mode", default=False)
     pm = Pomodoro(cycles, work_minutes, rest_minutes, test_mode)
     pm.start()
 

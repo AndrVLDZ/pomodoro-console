@@ -14,7 +14,7 @@ def get_yes_no(prompt: str, default: bool = False) -> bool:
     """Prompt the user to enter 'Y' for Yes or 'N' for No and return the corresponding boolean value."""
     while True:
         default_text = "Yes" if default else "No"
-        answer = input(f"{prompt} [default is {default_text}]: ").strip().upper()
+        answer = input(f"{prompt} (Y/N) [default is {default_text}]: ").strip().upper()
         if answer in {"Y", "YES", "N", "NO"}:
             return answer == "Y" or answer == "YES"
         elif answer == "":
