@@ -1,8 +1,8 @@
-# TODO: Fix time left after KeyboardInterrupt
+# TODO: Add new timer parameters for next session
 
 import time
 import argparse
-from tools import get_positive_int, get_yes_no
+from pomodoro.tools import get_positive_int, get_yes_no
 
 
 class TimeCounter():
@@ -13,7 +13,15 @@ class TimeCounter():
     def start_count(self, test_mode: bool = False) -> None:
         """Start the countdown timer."""
         while self.minutes != 0:
-            time.sleep(1 if test_mode else 60)
+            try:
+                time.sleep(1 if test_mode else 60)
+            except KeyboardInterrupt:
+                confirm_exit = get_yes_no("\nDo you want to stop the session?", default=False)
+                if confirm_exit:
+                    raise KeyboardInterrupt
+                else:
+                    print(f"\nSession resumed! Time left: {self.minutes} min\n")
+                    continue
             self.minutes -= 1
             print(f"Time left: {self.minutes} min")
         print("Time's up!\n")
@@ -50,13 +58,9 @@ class Pomodoro():
                 if not next_session:
                     break
             except KeyboardInterrupt:
-                confirm_exit = get_yes_no("\nDo you want to stop the session?", default=False)
-                if confirm_exit:
                     print("Session stopped manually!\n")
                     print("\a")
                     break
-                else:
-                    continue
 
     def _work(self) -> None:
         """Handle the work period."""
